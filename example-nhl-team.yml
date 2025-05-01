@@ -1,0 +1,111 @@
+---
+# NHL
+
+team:
+  - name: Flyers
+    lines:
+      - line: 1
+        players:
+          - name: Michkov, Matvei
+            position: W
+            letter:
+          - name: Konecny, Travis
+            position: W
+            letter: A
+          - name: Tippet, Owen
+            position: W
+            letter:
+          - name: Couturier, Sean
+            position: C
+            letter: C
+          - name: Foerster, Tyson
+            position: W
+            letter:
+          - name: Brink, Bobby
+            position: W
+            letter:
+          - name: Sanheim, Travis
+            position: D
+            letter: A
+          - name: Drysdale, Jamie
+            position: D
+            letter:
+          - name: Ersson, Samuel
+            position: G
+            letter:
+      - line: 2
+        players:
+          - name: Cates, Noah
+            position: C
+            letter:
+          - name: Pelletier, Jakob
+            position: W
+            letter:
+          - name: York, Cam
+            position: D
+            letter:
+          - name: Seeler, Nick
+            position: D
+            letter:
+          - name: Fedotov, Ivan
+            position: G
+            letter:
+      - line: 3
+        players:
+          - name: Deslauriers, Nicolas
+            position: W
+            letter:
+          - name: Hathaway, Garnet
+            position: W
+            letter:
+          - name: Zamula, Egor
+            position: D
+            letter:
+          - name: Andrae, Emil
+            position: D
+            letter:
+---
+# AHL
+
+team:
+  - name: Phantoms
+    lines:
+      - line: 1
+        players:
+          - name: Wilson, Garrett
+            position: W
+            letter: C
+          - name: Gahagen, Parker
+            position: G
+            letter:
+          - name: Lycksell, Olle
+            position: W
+            letter: A
+          - name: Andrae, Emil
+            position: D
+            letter: A
+          - name: Gaucher, Jacob
+            position: C
+            letter:
+          - name: Anisimov, Artem
+            position: W
+            letter:
+      - line: 2
+        players:
+          - name: Luchanko, Jett
+            position: C
+            letter:
+          - name: Wisdom, Zayde
+            position: W
+            letter:
+          - name: Belpedio, Louie
+            position: D
+            letter:
+          - name: Sandstrom, Felix
+            position: G
+            letter:
+      - line: 3
+        players:
+          - name: Hogberg, Linus
+            position: D
+            letter:
