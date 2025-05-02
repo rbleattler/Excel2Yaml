@@ -36,6 +36,54 @@ Excel2Yaml is an Office Scripts TypeScript script that converts an Excel table i
 3. **Run the Script:**
    - Execute the script from the Automate tab in Excel. The YAML output will appear in the specified worksheet.
 
+## How to Add and Use the Script in Excel
+
+Follow these steps to add the Excel2Yaml script to your Excel workbook using Office Scripts in Excel Online:
+
+### 1. Open the Automate Tab
+
+Go to your Excel workbook in Excel Online. Click on the **Automate** tab in the ribbon at the top.
+
+![Automate Tab](/images/automate.png)
+
+### 2. Create a New Script
+
+Click on **New Script** to open the Code Editor.
+
+### 3. Paste the Script Code
+
+In the Code Editor that appears on the right, paste the contents of `Excel2Yaml.ts`.
+
+![Paste Script in Code Editor](images/code_editor1.png)
+
+### 4. Save and Name Your Script
+
+Give your script a meaningful name (e.g., `Excel2Yaml`).
+
+### 5. Prepare Your Table
+
+Make sure your data is formatted as an Excel Table (with headers). You can do this by selecting your data and choosing **Format as Table** from the Home tab.
+
+![Example Table](images/sheet1.png)
+
+### 6. Configure the Script
+
+Edit the `config` object at the top of the script to match your table name, output sheet, and desired YAML structure. See the configuration section above for details.
+
+### 7. Run the Script
+
+Click the **Run** button in the Code Editor to execute the script, or Add it to the workbook from the 3 dots menu, and use the button. The YAML output will appear in the specified worksheet.
+
+![Run Script](images/code_editor1.1.png)
+
+### 8. Export or Use the YAML Output
+
+You can now copy the YAML output from the output worksheet for use in your application or workflow.
+
+---
+
+For more information on Office Scripts, see the [Office Scripts in Excel documentation](https://learn.microsoft.com/en-us/office/dev/scripts/overview/excel).
+
 ### Example Table
 
 | League | Team   | Position | Player           | Line | Letter |
@@ -319,4 +367,3 @@ Planned additions and improvements:
 
 Contributions are welcome! If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 Feel free to fork the repository and make changes as needed. If you have a specific use case or enhancement, please share it with the community.
-
