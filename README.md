@@ -8,6 +8,7 @@ Excel2Yaml is an Office Scripts TypeScript script that converts an Excel table i
 - **Customizable Output:** Define your own YAML structure using a JSON-based template in the script configuration.
 - **Column Filtering:** Exclude columns or empty values from the output as needed.
 - **Grouping and Nesting:** Supports grouping rows by column values to create nested YAML structures (e.g., teams, lines, players).
+- **Conditional Filtering (`where`):** Filter rows within groups based on conditions (e.g., only include players with a specific position).
 - **Regex Transforms:** Apply regular expression transformations to column values before output.
 - **Special Directives:** Apply template rows to all groups or exclude certain groupings.
 - **YAML Formatting:** Outputs well-formatted, properly indented YAML with support for document headers and comments.
@@ -126,6 +127,7 @@ team:
 
 - Convert any Excel table to YAML using a flexible, nested template.
 - Group and nest data by any column(s).
+- Filter data within groups using `where` clauses.
 - Exclude columns or rows based on configuration.
 - Apply regex transformations to clean or standardize data.
 - Output multi-document YAML with headers and comments.
@@ -246,7 +248,7 @@ const config: Config = {
 ### `output`
 
 - `as`: Output format (should be `yaml`).
-- `template`: The most important part. This is a nested object describing how to group and map your table data to YAML. Use `<ColumnName>` to reference columns. Supports recursive grouping (see below).
+- `template`: The most important part. This is a nested object describing how to group and map your table data to YAML. Use `<ColumnName>` to reference columns. Supports recursive grouping and filtering with `where` (see below).
   - `root`: The root template for the YAML structure.
   - `documentHeader`: (Optional) String to use as YAML document header (default: `---`).
   - `commentProperty`: (Optional) Column name to use as a YAML comment at the start of each document.
@@ -264,18 +266,29 @@ template: {
         in: "<League>",
         output: {
           name: "<Team>",
+          captains:{
+            forEach: "<Player>",
+            in: "<Team>",
+            where: "<Letter> == 'C' OR <Letter> == 'A'", // Filter for Captains (C) or Alternates (A)
+            output: {
+              name: "<Player>",
+              position: "<Position>",
+              letter: "<Letter>",
+            },
+          },
           lines: {
             forEach: "<Line>",
             in: "<Team>",
+            where: "<Line> != ''", // Exclude rows where Line is empty
             output: {
               line: "<Line>",
               players: {
                 forEach: "<Player>",
                 in: "<Line>",
+                where: "<Position> == 'D'", // Only include Defensemen
                 output: {
                   name: "<Player>",
                   position: "<Position>",
-                  letter: "<Letter>",
                 },
               },
             },
@@ -305,7 +318,7 @@ template: {
 
 - **Grouping**: The `forEach`/`in`/`output` pattern in the template recursively groups your data. For example, grouping by League, then Team, then Line, then Player.
 - **Column Mapping**: `<ColumnName>` in the template is replaced by the value from that column in each row.
-- **Filtering**: `Excludes` and `special.excludeGrouping` remove unwanted rows or groups.
+- **Filtering**: `Excludes`, `special.excludeGrouping`, and the `where` clause within the template remove unwanted rows or groups.
 - **Replacement**: `replacement` swaps out values before output.
 - **Regex Transforms**: `transforms` can clean up or standardize data before output.
 - **YAML Formatting**: `documentHeader` and `commentProperty` control document breaks and comments in the YAML.
@@ -360,7 +373,6 @@ MIT License. See LICENSE file for details.
 
 Planned additions and improvements:
 
-- Add support for filters/where statements in the template
 - Improve error handling and logging
 
 ## Contributing

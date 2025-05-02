@@ -1,44 +1,11 @@
-// Uncomment this line if you are using a local TypeScript environment with ExcelScript types
-// Comment this line if you are using the Office Scripts environment in Excel
-// The types file is available at: https://github.com/OfficeDev/office-scripts-docs-reference/blob/main/generate-docs/api-extractor-inputs-excel/excel.d.ts
+/*
+Uncomment this line if you are using a local TypeScript environment with ExcelScript types.
+Comment this line if you are using the Office Scripts environment in Excel
+*/
 import { ExcelScript } from "./excel"
+// The types file is available at: https://github.com/OfficeDev/office-scripts-docs-reference/blob/main/generate-docs/api-extractor-inputs-excel/excel.d.ts
 
-/**
- * Generic Excel table to YAML transformer based on a configuration template.
- * This script is designed to work with any table and template structure.
- */
-
-// Heredoc string for the configuration JSON (replace with actual config as needed)
-interface Config {
-  excel: { output_sheet_name: string; tableName: string };
-  special?: {
-    applyToAll?: Record<string, string>;
-    excludeGrouping?: Record<string, string>;
-  };
-  replacement?: {
-    input: string
-    output: string;
-  }[];
-  output: {
-    as: string;
-    template: {
-      root: unknown;
-      documentHeader?: string;
-      commentProperty?: string;
-    }
-  } & Record<string, unknown>;
-  transforms?: {
-    regexp: string;
-    name: string;
-  }[];
-  excludes?: {
-    emptyValues?: boolean;
-    excludeColumns?: string[];
-    groupingByValue?: Record<string, string>;
-  };
-}
-
-// Configuration object for the script, update this to match your needs
+// Configuration object for the script, update this to match your needs. Keep this at the top of the file for easy access and transparency.
 
 const config: Config = {
   excel: {
@@ -62,7 +29,34 @@ const config: Config = {
             in: "<League>",
             output: {
               name: "<Team>",
-              lines: {
+              captains:{
+                forEach: "<Player>",
+                in: "<Team>",
+                where: "<Letter> == 'C' OR <Letter> == 'A'",
+                output: {
+                  name: "<Player>",
+                  position: "<Position>",
+                  letter: "<Letter>",
+                },
+              },
+              defense: {
+                forEach: "<Line>",
+                in: "<Team>",
+                where: "<Line> != ''", // Line is not empty
+                output: {
+                  line: "<Line>",
+                  players: {
+                    forEach: "<Player>",
+                    in: "<Line>",
+                    where: "<Position> == 'D'",
+                    output: {
+                      name: "<Player>",
+                      position: "<Position>",
+                    },
+                  },
+                },
+              },
+              offense: {
                 forEach: "<Line>",
                 in: "<Team>",
                 output: {
@@ -70,14 +64,30 @@ const config: Config = {
                   players: {
                     forEach: "<Player>",
                     in: "<Line>",
+                    where: "<Position> == 'W'",
                     output: {
                       name: "<Player>",
                       position: "<Position>",
-                      letter: "<Letter>",
                     },
                   },
                 },
               },
+              goaltender: {
+                forEach: "<Line>",
+                in: "<Team>",
+                output: {
+                  line: "<Line>",
+                  players: {
+                    forEach: "<Player>",
+                    in: "<Line>",
+                    where: "<Position> == 'G'",
+                    output: {
+                      name: "<Player>",
+                      position: "<Position>",
+                    },
+                  },
+                },
+              }
             },
           },
         },
@@ -102,6 +112,75 @@ const config: Config = {
   },
 };
 
+//region interfaces
+
+/**
+ * Generic Excel table to YAML transformer based on a configuration template.
+ * This script is designed to work with any table and template structure.
+ */
+
+export interface ExcelConfig {
+  output_sheet_name: string;
+  tableName: string;
+}
+
+export interface SpecialConfig {
+  applyToAll?: Record<string, string>;
+  excludeGrouping?: Record<string, string>;
+}
+
+export interface ReplacementConfig {
+  input: string;
+  output: string;
+}
+
+export interface OutputTemplate {
+  root: TemplateNode;
+  documentHeader?: string;
+  commentProperty?: string;
+}
+
+export interface OutputConfig {
+  as: string;
+  template: OutputTemplate;
+}
+
+export interface TransformConfig {
+  regexp: string;
+  name: string;
+}
+
+export interface ExcludesConfig {
+  emptyValues?: boolean;
+  excludeColumns?: string[];
+  groupingByValue?: Record<string, string>;
+}
+
+export interface Config {
+  excel: ExcelConfig;
+  special?: SpecialConfig;
+  replacement?: ReplacementConfig[];
+  output: OutputConfig;
+  transforms?: TransformConfig[];
+  excludes?: ExcludesConfig;
+}
+
+interface MappingNode {
+  [key: string]: TemplateNode | string | number | boolean;
+}
+
+interface GroupingNode {
+  forEach: string;
+  in: string;
+  output: TemplateNode;
+  where?: string; // new property for "where" filtering
+}
+
+type TemplateNode = MappingNode | GroupingNode | string | number | boolean;
+
+//endregion
+
+//region functions
 
 // Utility: Get table data as array of objects
 function getTableData(table: ExcelScript.Table): Record<string, unknown>[] {
@@ -167,6 +246,53 @@ function resolveTemplateVar(name: string, row: Record<string, unknown> | null, c
   return value;
 }
 
+// Utility: Evaluate "where" condition with support for compound statements
+function evaluateWhere(condition: string, row: Record<string, unknown>, context: Record<string, unknown>, config: Config): boolean {
+  // Helper to evaluate a single condition
+  function evaluateSingleCondition(cond: string): boolean {
+    const match = cond.match(/^<(.+)> *(==|!=) *['"](.+)['"]$/);
+    if (!match) return true; // if condition doesn't match, include row by default
+    const [, varName, operator, value] = match;
+    const rowValue = resolveTemplateVar(varName, row, context, config);
+    if (operator === '==') {
+      return String(rowValue) === value;
+    } else { // operator === '!='
+      return String(rowValue) !== value;
+    }
+  }
+
+  // Parse and evaluate compound conditions
+  function parseAndEvaluate(cond: string): boolean {
+    // Handle parentheses for nested conditions
+    while (cond.includes('(')) {
+      cond = cond.replace(/\(([^()]+)\)/g, (_, inner) => String(parseAndEvaluate(inner)));
+    }
+
+    // Split by OR (||) first, as it has the lowest precedence
+    const orClauses = cond.split(/\s+OR\s+/i);
+    if (orClauses.length > 1) {
+      return orClauses.some(clause => parseAndEvaluate(clause));
+    }
+
+    // Split by AND (&&) next, as it has higher precedence
+    const andClauses = cond.split(/\s+AND\s+/i);
+    if (andClauses.length > 1) {
+      return andClauses.every(clause => parseAndEvaluate(clause));
+    }
+
+    // Handle NOT (negation)
+    const notMatch = cond.match(/^NOT\s+(.+)/i);
+    if (notMatch) {
+      return !parseAndEvaluate(notMatch[1]);
+    }
+
+    // Evaluate a single condition
+    return evaluateSingleCondition(cond.trim());
+  }
+
+  return parseAndEvaluate(condition);
+}
+
 // Utility: Recursively build output structure from template
 function buildOutput(template: unknown, data: Record<string, unknown>[], context: Record<string, unknown> = {}): unknown {
   if (typeof template !== 'object' || template === null) {
@@ -196,8 +322,16 @@ function buildOutput(template: unknown, data: Record<string, unknown>[], context
         return;
       }
 
+      // Apply "where" filtering if specified
+      let filteredRows = groupRows;
+      if (templateObj.where && typeof templateObj.where === 'string') {
+        filteredRows = groupRows.filter(row => evaluateWhere(templateObj.where as string, row, context, config));
+        // Skip group if no rows remain after filtering
+        if (filteredRows.length === 0) return;
+      }
+
       const newContext = { ...context, [groupCol]: groupKey };
-      const groupOutput = buildOutput(templateObj.output, groupRows, newContext);
+      const groupOutput = buildOutput(templateObj.output, filteredRows, newContext);
 
       const commentProperty = config.output.template.commentProperty;
       let processedOutput = groupOutput;
@@ -379,6 +513,10 @@ function toYAMLObject(obj: unknown, indent: number = 0): string {
     return valueStr;
   }
 }
+
+//endRegion functions
+
+//region Main
 
 // Main function to run in Excel
 function main(workbook: ExcelScript.Workbook): void {
