@@ -1,5 +1,6 @@
 // Uncomment this line if you are using a local TypeScript environment with ExcelScript types
 // Comment this line if you are using the Office Scripts environment in Excel
+// The types file is available at: https://github.com/OfficeDev/office-scripts-docs-reference/blob/main/generate-docs/api-extractor-inputs-excel/excel.d.ts
 import { ExcelScript } from "./excel"
 
 /**
@@ -30,7 +31,7 @@ interface Config {
     regexp: string;
     name: string;
   }[];
-  Excludes?: {
+  excludes?: {
     emptyValues?: boolean;
     excludeColumns?: string[];
     groupingByValue?: Record<string, string>;
@@ -93,7 +94,7 @@ const config: Config = {
     //   name: "Column Name",
     // },
   ],
-  Excludes: {
+  excludes: {
     emptyValues: false,
     excludeColumns: [],
     groupingByValue: {
@@ -117,7 +118,7 @@ function getTableData(table: ExcelScript.Table): Record<string, unknown>[] {
 }
 
 // Utility: Exclude columns and empty values
-function filterTableData(data: Record<string, unknown>[], excludes: Config['Excludes']): Record<string, unknown>[] {
+function filterTableData(data: Record<string, unknown>[], excludes: Config['excludes']): Record<string, unknown>[] {
   if (!excludes) return data;
   let filtered = data;
   if (excludes.excludeColumns) {
@@ -385,7 +386,7 @@ function main(workbook: ExcelScript.Workbook): void {
   if (!table) throw new Error("Table not found: " + config.excel.tableName);
 
   let data: Record<string, unknown>[] = getTableData(table);
-  data = filterTableData(data, config.Excludes);
+  data = filterTableData(data, config.excludes);
   data = applyTransforms(data);
   data = applySpecialDirectives(data);
 
