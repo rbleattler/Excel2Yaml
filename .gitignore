@@ -1,2 +1,15 @@
 # excel hidden files
 ~$*
+scratch/
+# Node and build artifacts
+node_modules/
+dist/
+.DS_Store
+# TypeScript/JavaScript build output
+*.js
+*.js.map
+*.d.ts
+# Auto-generated Office Script
+Excel2Yaml.ts
+# Documentation output
+docs/

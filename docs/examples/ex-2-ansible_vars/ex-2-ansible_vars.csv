@@ -1,0 +1,5 @@
+Hostname,IP Address,Environment,Role
+web01,10.0.0.1,prod,web
+db01,10.0.0.2,prod,db
+web02,10.0.1.1,staging,web
+db02,10.0.1.2,staging,db
