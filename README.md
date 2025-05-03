@@ -2,6 +2,48 @@
 
 Excel2Yaml is an Office Scripts TypeScript script that converts an Excel table into YAML format and writes the output to a target worksheet. It is designed to be flexible and configurable, supporting a wide range of table structures and YAML output templates.
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Excel2Yaml](#excel2yaml)
+  - [Features](#features)
+  - [How It Works](#how-it-works)
+  - [Usage](#usage)
+  - [How to Add and Use the Script in Excel](#how-to-add-and-use-the-script-in-excel)
+    - [1. Open the Automate Tab](#1-open-the-automate-tab)
+    - [2. Create a New Script](#2-create-a-new-script)
+    - [3. Paste the Script Code](#3-paste-the-script-code)
+    - [4. Save and Name Your Script](#4-save-and-name-your-script)
+    - [5. Prepare Your Table](#5-prepare-your-table)
+    - [6. Configure the Script](#6-configure-the-script)
+    - [7. Run the Script](#7-run-the-script)
+    - [8. Export or Use the YAML Output](#8-export-or-use-the-yaml-output)
+    - [Example Table](#example-table)
+    - [Example YAML Output](#example-yaml-output)
+  - [What It Can Do](#what-it-can-do)
+  - [Limitations](#limitations)
+  - [Example: Customizing the Template](#example-customizing-the-template)
+  - [Template Variable Syntax: `<ColumnName>`](#template-variable-syntax-columnname)
+  - [Configuration Reference](#configuration-reference)
+    - [Top-Level Structure](#top-level-structure)
+    - [`excel`](#excel)
+    - [`special`](#special)
+    - [`replacement`](#replacement)
+    - [`output`](#output)
+      - [Example Template](#example-template)
+    - [`transforms`](#transforms)
+    - [`Excludes`](#excludes)
+    - [Advanced Configuration](#advanced-configuration)
+  - [How Config Affects Output](#how-config-affects-output)
+  - [Example: Customizing for Your Table](#example-customizing-for-your-table)
+  - [Tips](#tips)
+  - [License](#license)
+  - [TODO](#todo)
+  - [Contributing](#contributing)
+
+<!-- /code_chunk_output -->
+
 ## Features
 
 - **Generic Table to YAML Conversion:** Works with any Excel table by using a configurable template.
@@ -37,47 +79,47 @@ Excel2Yaml is an Office Scripts TypeScript script that converts an Excel table i
 3. **Run the Script:**
    - Execute the script from the Automate tab in Excel. The YAML output will appear in the specified worksheet.
 
-## How to Add and Use the Script in Excel
+### How to Add and Use the Script in Excel
 
 Follow these steps to add the Excel2Yaml script to your Excel workbook using Office Scripts in Excel Online:
 
-### 1. Open the Automate Tab
+#### 1. Open the Automate Tab
 
 Go to your Excel workbook in Excel Online. Click on the **Automate** tab in the ribbon at the top.
 
 ![Automate Tab](/images/automate.png)
 
-### 2. Create a New Script
+#### 2. Create a New Script
 
 Click on **New Script** to open the Code Editor.
 
-### 3. Paste the Script Code
+#### 3. Paste the Script Code
 
 In the Code Editor that appears on the right, paste the contents of `Excel2Yaml.ts`.
 
 ![Paste Script in Code Editor](images/code_editor1.png)
 
-### 4. Save and Name Your Script
+#### 4. Save and Name Your Script
 
 Give your script a meaningful name (e.g., `Excel2Yaml`).
 
-### 5. Prepare Your Table
+#### 5. Prepare Your Table
 
 Make sure your data is formatted as an Excel Table (with headers). You can do this by selecting your data and choosing **Format as Table** from the Home tab.
 
 ![Example Table](images/sheet1.png)
 
-### 6. Configure the Script
+#### 6. Configure the Script
 
 Edit the `config` object at the top of the script to match your table name, output sheet, and desired YAML structure. See the configuration section above for details.
 
-### 7. Run the Script
+#### 7. Run the Script
 
 Click the **Run** button in the Code Editor to execute the script, or Add it to the workbook from the 3 dots menu, and use the button. The YAML output will appear in the specified worksheet.
 
 ![Run Script](images/code_editor1.1.png)
 
-### 8. Export or Use the YAML Output
+#### 8. Export or Use the YAML Output
 
 You can now copy the YAML output from the output worksheet for use in your application or workflow.
 
@@ -139,14 +181,6 @@ team:
 - Does not support writing YAML back to Excel as a table (output is plain text).
 - Complex YAML features (anchors, references, custom tags) are not supported.
 - Designed for use in Excel Online/Office Scripts; may require adaptation for other environments.
-
-## Advanced Configuration
-
-- See the `config` object in `Excel2Yaml.ts` for all available options, including:
-  - `output.template`: Define the YAML structure and grouping.
-  - `Excludes`: Exclude columns, empty values, or specific groupings.
-  - `transforms`: Apply regex-based value transformations.
-  - `special`: Apply template rows to all groups or exclude groupings.
 
 ## Example: Customizing the Template
 
@@ -308,13 +342,21 @@ template: {
 
 ### `Excludes`
 
-- `emptyValues`: If true, rows with any empty value are excluded.
+- `emptyValues`: If true, rows with any empty, null, or undefined value are excluded.
 - `excludeColumns`: Array of column names to exclude from output.
-- `groupingByValue`: Object mapping column names to values; rows with these values are excluded from grouping.
+- `groupingByValue`: Object mapping column names (or `<ColumnName>`) to exclusion criteria. Rows matching these criteria are excluded before grouping and template processing.
+- **Simple Exclusion:** `{ "<ColumnName>": "ValueToExclude" }` — excludes rows where the column equals that value.
+- **Conditional Exclusion:** `{ "<AnyKey>": { where: "<ColumnName> == 'SomeValue' OR <AnotherColumn> != ''" } }` — excludes any row where the `where` condition is true. Use `== []` to test for empty (null/undefined/empty/whitespace) or `!= []` to test for non-empty.
 
----
+### Advanced Configuration
 
-## How Config Affects Output
+- See the `config` object in `Excel2Yaml.ts` for all available options, including:
+  - `output.template`: Define the YAML structure and grouping.
+  - `Excludes`: Exclude columns, empty values, or specific groupings.
+  - `transforms`: Apply regex-based value transformations.
+  - `special`: Apply template rows to all groups or exclude groupings.
+
+### How Config Affects Output
 
 - **Grouping**: The `forEach`/`in`/`output` pattern in the template recursively groups your data. For example, grouping by League, then Team, then Line, then Player.
 - **Column Mapping**: `<ColumnName>` in the template is replaced by the value from that column in each row.

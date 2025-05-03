@@ -42,7 +42,7 @@ const config: Config = {
               defense: {
                 forEach: "<Line>",
                 in: "<Team>",
-                where: "<Line> != ''", // Line is not empty
+                where: "<Position> == 'D' AND <Player> != []", // Line is not empty
                 output: {
                   line: "<Line>",
                   players: {
@@ -59,6 +59,7 @@ const config: Config = {
               offense: {
                 forEach: "<Line>",
                 in: "<Team>",
+                where: "<Position> == 'W' AND <Player> != []", // Line is not empty
                 output: {
                   line: "<Line>",
                   players: {
@@ -75,6 +76,7 @@ const config: Config = {
               goaltender: {
                 forEach: "<Line>",
                 in: "<Team>",
+                where: "<Position> == 'G' AND <Player> != []", // Line is not empty
                 output: {
                   line: "<Line>",
                   players: {
@@ -153,7 +155,7 @@ export interface TransformConfig {
 export interface ExcludesConfig {
   emptyValues?: boolean;
   excludeColumns?: string[];
-  groupingByValue?: Record<string, string>;
+  groupingByValue?: Record<string, string | { where: string }>;
 }
 
 export interface Config {
@@ -211,9 +213,17 @@ function filterTableData(data: Record<string, unknown>[], excludes: Config['excl
     filtered = filtered.filter(row => Object.values(row).every(v => v !== null && v !== undefined && v !== ''));
   }
   if (excludes.groupingByValue) {
-    for (const [column, valueToExclude] of Object.entries(excludes.groupingByValue)) {
-      filtered = filtered.filter(row => String(row[column]) !== String(valueToExclude));
-    }
+    filtered = filtered.filter(row => {
+      for (const [column, condition] of Object.entries(excludes.groupingByValue!)) {
+        const colName = column.replace(/[<>]/g, '');
+        if (typeof condition === 'string') {
+          if (String(row[colName]) === condition) return false;
+        } else {
+          if (evaluateWhere(condition.where, row, {}, config)) return false;
+        }
+      }
+      return true;
+    });
   }
   return filtered;
 }
@@ -250,13 +260,20 @@ function resolveTemplateVar(name: string, row: Record<string, unknown> | null, c
 function evaluateWhere(condition: string, row: Record<string, unknown>, context: Record<string, unknown>, config: Config): boolean {
   // Helper to evaluate a single condition
   function evaluateSingleCondition(cond: string): boolean {
-    const match = cond.match(/^<(.+)> *(==|!=) *['"](.+)['"]$/);
+    const emptyMatch = cond.match(/^<(.+?)>\s*(==|!=)\s*\[\]\s*$/);
+    if (emptyMatch) {
+      const [, varName, operator] = emptyMatch;
+      const rowValue = resolveTemplateVar(varName, row, context, config);
+      const rowStr = rowValue == null || String(rowValue).trim() === '' ? '' : String(rowValue).trim();
+      return operator === '==' ? rowStr === '' : rowStr !== '';
+    }
+    const match = cond.match(/^<(.+?)>\s*(==|!=)\s*['"](.*?)['"]\s*$/);
     if (!match) return true; // if condition doesn't match, include row by default
     const [, varName, operator, value] = match;
     const rowValue = resolveTemplateVar(varName, row, context, config);
     if (operator === '==') {
       return String(rowValue) === value;
-    } else { // operator === '!='
+    } else {
       return String(rowValue) !== value;
     }
   }
