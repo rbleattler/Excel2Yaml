@@ -1,0 +1,14 @@
+{
+  "name": "excel2yaml",
+  "version": "1.0.0",
+  "description": "Excel table to YAML Office Script with modular TS build and documentation.",
+  "main": "Excel2Yaml.ts",
+  "scripts": {
+    "build": "node build.js",
+    "docs": "npx typedoc --options typedoc.json"
+  },
+  "devDependencies": {
+    "typedoc": "^0.25.0",
+    "typedoc-plugin-markdown": "^3.14.0"
+  }
+}

@@ -11,5 +11,3 @@ dist/
 *.d.ts
 # Auto-generated Office Script
 Excel2Yaml.ts
-# Documentation output
-docs/

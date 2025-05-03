@@ -16,17 +16,21 @@ const config: Config = {
 ```
 
 ## `excel`
+
 - `output_sheet_name`: Name of the worksheet where YAML output will be written.
 - `tableName`: Name of the Excel table to read as input.
 
 ## `special`
+
 - `applyToAll`: (Optional) Object mapping column names to values. Template rows with these values are applied to all groups (e.g., for adding a captain to every line).
 - `excludeGrouping`: (Optional) Object mapping column names to values. Excludes groups with these values from output.
 
 ## `replacement`
+
 - Array of `{ input, output }` objects. If a column value matches `input`, it is replaced with `output` in the YAML.
 
 ## `output`
+
 - `as`: Output format (should be `yaml`).
 - `template`: The most important part. This is a nested object describing how to group and map your table data to YAML. Use `<ColumnName>` to reference columns. Supports recursive grouping and filtering with `where` (see [Template System](template-system.md)).
   - `root`: The root template for the YAML structure.
@@ -34,9 +38,11 @@ const config: Config = {
   - `commentProperty`: (Optional) Column name to use as a YAML comment at the start of each document.
 
 ## `transforms`
+
 - Array of objects `{ regexp, name }`. Applies a regex to the column `name` and replaces its value with the first capture group (lowercased). Useful for cleaning or extracting data.
 
 ## `excludes`
+
 - `emptyValues`: If true, rows with any empty, null, or undefined value are excluded.
 - `excludeColumns`: Array of column names to exclude from output.
 - `groupingByValue`: Object mapping column names (or `<ColumnName>`) to exclusion criteria. Rows matching these criteria are excluded before grouping and template processing.
