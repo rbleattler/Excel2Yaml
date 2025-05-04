@@ -4,7 +4,6 @@
 
 Excel2YAML is an Office Script (ExcelScript) for Microsoft Excel that transforms table data into YAML using a flexible template configuration. The script is designed to be pasted as a single file into the Office Scripts editor in Excel Online.
 
-
 ## Usage
 
 1. **Add the Script:**
