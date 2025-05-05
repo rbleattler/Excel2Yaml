@@ -6,7 +6,7 @@ node_modules/
 dist/
 .DS_Store
 # TypeScript/JavaScript build output
-*.js
+[^build]*.js
 *.js.map
 *.d.ts
 # Auto-generated Office Script

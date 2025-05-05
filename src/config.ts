@@ -4,9 +4,10 @@
  * @remarks
  * Update this file to change the script's behavior. This will be inlined for Office Scripts.
  */
-import { Config } from '../scratch/interfaces';
+// import { Config } from './interfaces/Config';
 
-export const config: Config = {
+
+export const config: Excel2YAML.Config = {
   excel: {
     output_sheet_name: "Output",
     tableName: "Table1",

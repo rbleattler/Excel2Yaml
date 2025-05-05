@@ -1,14 +1,19 @@
-/**
- * Configuration for data transformations.
- *
- * @public
- * @remarks
- * Used to define regex-based transformations for columns.
- *
- * @property regexp - Regular expression pattern for transformation
- * @property name - Name of the column to transform
- */
-export interface TransformConfig {
-  regexp: string;
-  name: string;
+namespace Excel2YAML {
+  /**
+   * Configuration for data transformations.
+   *
+   * @remarks
+   * Used to define regex-based transformations for columns.
+   */
+  export interface TransformConfig {
+    /**
+     * Regular expression pattern for transformation.
+     */
+    regexp: string;
+    /**
+     * Name of the column to transform.
+     */
+    name: string;
+  }
 }
+

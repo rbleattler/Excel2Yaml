@@ -1,16 +1,19 @@
-/**
- * Configuration for output generation.
- *
- * @public
- * @remarks
- * Used to specify output format and template.
- *
- * @property as - Output format (e.g., "yaml")
- * @property template - Template structure for output generation
- */
-import { OutputTemplate } from './OutputTemplate';
-
-export interface OutputConfig {
-  as: string;
-  template: OutputTemplate;
+namespace Excel2YAML {
+  /**
+   * Configuration for output generation.
+   *
+   * @remarks
+   * Used to specify output format and template.
+   */
+  export interface OutputConfig {
+    /**
+     * Output format (e.g., "yaml").
+     */
+    as: string;
+    /**
+     * Template structure for output generation.
+     */
+    template: Excel2YAML.OutputTemplate;
+  }
 }
+

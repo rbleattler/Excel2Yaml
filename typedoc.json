@@ -1,12 +1,31 @@
 {
-  "entryPoints": ["src/"],
+  "entryPoints": [
+    "src/excel2yaml.ns.ts",
+    // "src/interfaces/*.ts"
+  ],
   "out": "docs/src",
-  "plugin": ["typedoc-plugin-markdown"],
-  "exclude": ["**/*.test.ts", "**/__mocks__/**", "**/*.d.ts", "**/node_modules/**"],
+  "plugin": [
+    "typedoc-plugin-markdown"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/__mocks__/**",
+    "**/*.d.ts",
+    "**/node_modules/**",
+    "src/config.ts",
+    "src/main.ts"
+  ],
   "excludePrivate": true,
   "excludeProtected": true,
   "excludeExternals": true,
-  "readme": "none",
+  "excludeReferences": true,
+  "excludeNotDocumented": false,
+  "readme": "README.md",
   "theme": "markdown",
-  "entryPointStrategy": "expand"
+  "entryPointStrategy": "expand",
+  "commentStyle": "all",
+  "name": "Excel2Yaml",
+  "maxTypeConversionDepth": 10,
+  "pretty": true,
+  "cleanOutputDir": true,
 }
