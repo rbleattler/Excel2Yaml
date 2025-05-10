@@ -247,8 +247,8 @@ function resolveTemplateVar(name: string, row: Record<string, unknown> | null, c
 
   if (typeof value === 'string' && config.replacement) {
     for (const rep of config.replacement) {
-      if (value === rep.input) {
-        value = rep.output;
+      if (value.match(".*" + rep.input + ".*")) {
+        value = value.replace(new RegExp(rep.input, 'g'), rep.output);
         break;
       }
     }
