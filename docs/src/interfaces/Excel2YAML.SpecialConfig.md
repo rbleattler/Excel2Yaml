@@ -27,7 +27,7 @@ Defines template rows that should be applied across all groups.
 
 #### Defined in
 
-[interfaces/SpecialConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/ae3ad693799a8fb5c2361b7e1eb0ff2700eea5d6/src/interfaces/SpecialConfig.ts#L13)
+[interfaces/SpecialConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/SpecialConfig.ts#L13)
 
 ___
 
@@ -39,4 +39,4 @@ Defines groups that should be excluded from processing.
 
 #### Defined in
 
-[interfaces/SpecialConfig.ts:17](https://github.com/rbleattler/Excel2Yaml/blob/ae3ad693799a8fb5c2361b7e1eb0ff2700eea5d6/src/interfaces/SpecialConfig.ts#L17)
+[interfaces/SpecialConfig.ts:17](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/SpecialConfig.ts#L17)

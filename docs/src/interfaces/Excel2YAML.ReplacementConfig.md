@@ -27,7 +27,7 @@ The string to match for replacement.
 
 #### Defined in
 
-[interfaces/ReplacementConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/ae3ad693799a8fb5c2361b7e1eb0ff2700eea5d6/src/interfaces/ReplacementConfig.ts#L13)
+[interfaces/ReplacementConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ReplacementConfig.ts#L13)
 
 ___
 
@@ -39,4 +39,4 @@ The string to replace with.
 
 #### Defined in
 
-[interfaces/ReplacementConfig.ts:17](https://github.com/rbleattler/Excel2Yaml/blob/ae3ad693799a8fb5c2361b7e1eb0ff2700eea5d6/src/interfaces/ReplacementConfig.ts#L17)
+[interfaces/ReplacementConfig.ts:17](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ReplacementConfig.ts#L17)

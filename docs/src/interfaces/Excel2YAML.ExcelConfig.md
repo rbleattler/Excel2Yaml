@@ -27,7 +27,7 @@ Name of the sheet where output will be written.
 
 #### Defined in
 
-[interfaces/ExcelConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/ae3ad693799a8fb5c2361b7e1eb0ff2700eea5d6/src/interfaces/ExcelConfig.ts#L13)
+[interfaces/ExcelConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ExcelConfig.ts#L13)
 
 ___
 
@@ -39,4 +39,4 @@ Name of the input table containing the data.
 
 #### Defined in
 
-[interfaces/ExcelConfig.ts:17](https://github.com/rbleattler/Excel2Yaml/blob/ae3ad693799a8fb5c2361b7e1eb0ff2700eea5d6/src/interfaces/ExcelConfig.ts#L17)
+[interfaces/ExcelConfig.ts:17](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ExcelConfig.ts#L17)

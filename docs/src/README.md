@@ -81,6 +81,11 @@ For more information on Office Scripts, see the [Office Scripts in Excel documen
    - Run `npm install` to install dev dependencies (TypeDoc and typedoc-plugin-markdown).
    - Run `npm run build` to generate the single-file `Excel2Yaml.ts` for Office Scripts. This will concatenate and inline all code from `src/`, removing all imports/exports and ensuring Office Scripts compatibility (single file, no imports, no external dependencies). **Any file named `excel.d.ts` is always excluded from the build.**
 
+## Build Output
+
+- The build script removes all `namespace Excel2YAML { ... }` wrappers from the final output. Only the inner code is included, with no namespace declaration or braces, even if the namespace wraps a single function.
+- All `Excel2YAML.` prefixes are also removed from the output.
+
 2. **Generate Documentation:**
    - Run `npm run docs` to generate markdown documentation for all interfaces, types, and functions in `docs/src/` using TypeDoc.
    - **Note:** The `typedoc-plugin-markdown` plugin and a `tsconfig.json` file are required for markdown output. Both are included in the repo and will be installed or used automatically.

@@ -4,7 +4,6 @@
  * @remarks
  * Update this file to change the script's behavior. This will be inlined for Office Scripts.
  */
-// import { Config } from './interfaces/Config';
 
 
 export const config: Excel2YAML.Config = {
