@@ -104,11 +104,26 @@ function build() {
 
   let nsContent = '';
   let nonNsContent = '';
+  let configBlock = '';
 
   files.forEach(file => {
     let code = fs.readFileSync(file, 'utf8');
     code = stripImportsExports(code);
     if (code.trim() === '') return;
+    // Extract config block if present
+    if (/const config\s*[:=]/.test(code)) {
+      // Find the start of the config block
+      const configStart = code.indexOf('const config');
+      // Find the end of the config block (assume it ends with '};')
+      const configEnd = code.indexOf('};', configStart);
+      if (configStart !== -1 && configEnd !== -1) {
+        configBlock = code.slice(configStart, configEnd + 2).trim();
+        // Remove Excel2YAML. prefix from config type annotation
+        configBlock = configBlock.replace(/const config:\s*Excel2YAML\./, 'const config: ');
+        // Remove config block from code
+        code = code.slice(0, configStart) + code.slice(configEnd + 2);
+      }
+    }
     if (/namespace\s+Excel2YAML\s*{/.test(code)) {
       nsContent += `// File: ${path.relative(__dirname, file)}\n`;
       nsContent += extractNamespaceContent(code) + '\n';
@@ -118,6 +133,10 @@ function build() {
     }
   });
 
+  // Place config block at the very top after the header
+  if (configBlock) {
+    output += configBlock + '\n\n';
+  }
   // Remove namespace surround and all Excel2YAML. prefixes
   if (nsContent) {
     output += removeExcel2YAMLPrefixes(nsContent) + '\n';
