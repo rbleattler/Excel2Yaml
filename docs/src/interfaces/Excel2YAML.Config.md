@@ -31,7 +31,7 @@ Excel sheet configuration.
 
 #### Defined in
 
-[interfaces/Config.ts:11](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/Config.ts#L11)
+[interfaces/Config.ts:11](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/Config.ts#L11)
 
 ___
 
@@ -43,7 +43,7 @@ Data exclusion rules.
 
 #### Defined in
 
-[interfaces/Config.ts:31](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/Config.ts#L31)
+[interfaces/Config.ts:31](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/Config.ts#L31)
 
 ___
 
@@ -55,7 +55,7 @@ Output generation configuration.
 
 #### Defined in
 
-[interfaces/Config.ts:23](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/Config.ts#L23)
+[interfaces/Config.ts:23](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/Config.ts#L23)
 
 ___
 
@@ -67,7 +67,7 @@ String replacement rules.
 
 #### Defined in
 
-[interfaces/Config.ts:19](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/Config.ts#L19)
+[interfaces/Config.ts:19](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/Config.ts#L19)
 
 ___
 
@@ -79,7 +79,7 @@ Special data handling configuration.
 
 #### Defined in
 
-[interfaces/Config.ts:15](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/Config.ts#L15)
+[interfaces/Config.ts:15](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/Config.ts#L15)
 
 ___
 
@@ -91,4 +91,4 @@ Data transformation configuration.
 
 #### Defined in
 
-[interfaces/Config.ts:27](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/Config.ts#L27)
+[interfaces/Config.ts:27](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/Config.ts#L27)

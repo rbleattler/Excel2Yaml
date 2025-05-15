@@ -27,7 +27,7 @@ Name of the column to transform.
 
 #### Defined in
 
-[interfaces/TransformConfig.ts:16](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/TransformConfig.ts#L16)
+[interfaces/TransformConfig.ts:16](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/TransformConfig.ts#L16)
 
 ___
 
@@ -39,4 +39,4 @@ Regular expression pattern for transformation.
 
 #### Defined in
 
-[interfaces/TransformConfig.ts:12](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/TransformConfig.ts#L12)
+[interfaces/TransformConfig.ts:12](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/TransformConfig.ts#L12)

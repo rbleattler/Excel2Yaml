@@ -47,7 +47,7 @@ Used to represent any node in the template tree.
 
 #### Defined in
 
-[interfaces/TemplateNode.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/TemplateNode.ts#L8)
+[interfaces/TemplateNode.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/TemplateNode.ts#L8)
 
 ## Functions
 
@@ -72,7 +72,7 @@ Processed data
 
 #### Defined in
 
-[functions/applySpecialDirectives.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/applySpecialDirectives.ts#L8)
+[functions/applySpecialDirectives.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/applySpecialDirectives.ts#L8)
 
 ___
 
@@ -97,7 +97,7 @@ Transformed data
 
 #### Defined in
 
-[functions/applyTransforms.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/applyTransforms.ts#L8)
+[functions/applyTransforms.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/applyTransforms.ts#L8)
 
 ___
 
@@ -124,7 +124,7 @@ Processed output structure
 
 #### Defined in
 
-[functions/buildOutput.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/buildOutput.ts#L10)
+[functions/buildOutput.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/buildOutput.ts#L10)
 
 ___
 
@@ -151,7 +151,7 @@ Result of condition evaluation
 
 #### Defined in
 
-[functions/evaluateWhere.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/evaluateWhere.ts#L10)
+[functions/evaluateWhere.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/evaluateWhere.ts#L10)
 
 ___
 
@@ -177,7 +177,7 @@ Filtered data
 
 #### Defined in
 
-[functions/filterTableData.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/filterTableData.ts#L8)
+[functions/filterTableData.ts:8](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/filterTableData.ts#L8)
 
 ___
 
@@ -208,7 +208,7 @@ Grouped data
 
 #### Defined in
 
-[functions/groupBy.ts:9](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/groupBy.ts#L9)
+[functions/groupBy.ts:9](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/groupBy.ts#L9)
 
 ___
 
@@ -235,7 +235,7 @@ Resolved value
 
 #### Defined in
 
-[functions/resolveTemplateVar.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/resolveTemplateVar.ts#L10)
+[functions/resolveTemplateVar.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/resolveTemplateVar.ts#L10)
 
 ___
 
@@ -262,7 +262,7 @@ Formatted YAML string
 
 #### Defined in
 
-[functions/toYAML.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/toYAML.ts#L10)
+[functions/toYAML.ts:10](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/toYAML.ts#L10)
 
 ___
 
@@ -287,4 +287,4 @@ Formatted YAML string
 
 #### Defined in
 
-[functions/toYAMLObject.ts:9](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/functions/toYAMLObject.ts#L9)
+[functions/toYAMLObject.ts:9](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/functions/toYAMLObject.ts#L9)

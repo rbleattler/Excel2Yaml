@@ -6,6 +6,8 @@ Excel2Yaml / [Exports](modules.md)
 
 Excel2YAML is an Office Script (ExcelScript) for Microsoft Excel that transforms table data into YAML using a flexible template configuration. The script is designed to be pasted as a single file into the Office Scripts editor in Excel Online.
 
+> **Note:** As of the latest build, all functions and types are top-level and not namespaced. Use them directly (e.g., `Config`, `applySpecialDirectives`, etc.).
+
 ## Usage
 
 1. **Add the Script:**
@@ -77,18 +79,21 @@ For more information on Office Scripts, see the [Office Scripts in Excel documen
 
 ### Build & Documentation Generation
 
-1. **Build the Office Script:**
-   - Run `npm install` to install dev dependencies (TypeDoc and typedoc-plugin-markdown).
-   - Run `npm run build` to generate the single-file `Excel2Yaml.ts` for Office Scripts. This will concatenate and inline all code from `src/`, removing all imports/exports and ensuring Office Scripts compatibility (single file, no imports, no external dependencies). **Any file named `excel.d.ts` is always excluded from the build.**
+#### Build the Office Script
 
-## Build Output
+- Run `npm install` to install dev dependencies (TypeDoc and typedoc-plugin-markdown).
+- Run `npm run build` to generate the single-file `Excel2Yaml.ts` for Office Scripts. This will concatenate and inline all code from `src/`, removing all imports/exports and ensuring Office Scripts compatibility (single file, no imports, no external dependencies). **Any file named `excel.d.ts` is always excluded from the build.**
+
+#### Build Output
 
 - The build script removes all `namespace Excel2YAML { ... }` wrappers from the final output. Only the inner code is included, with no namespace declaration or braces, even if the namespace wraps a single function.
 - All `Excel2YAML.` prefixes are also removed from the output.
+- **All functions and types are now top-level and not namespaced.**
 
-2. **Generate Documentation:**
-   - Run `npm run docs` to generate markdown documentation for all interfaces, types, and functions in `docs/src/` using TypeDoc.
-   - **Note:** The `typedoc-plugin-markdown` plugin and a `tsconfig.json` file are required for markdown output. Both are included in the repo and will be installed or used automatically.
+#### Generate Documentation
+
+- Run `npm run docs` to generate markdown documentation for all interfaces, types, and functions in `docs/src/` using TypeDoc.
+- **Note:** The `typedoc-plugin-markdown` plugin and a `tsconfig.json` file are required for markdown output. Both are included in the repo and will be installed or used automatically.
 
 > **Note:** Only `Excel2Yaml.ts` is used in Excel. The `src/` directory is for maintainability, documentation, and development purposes.
 

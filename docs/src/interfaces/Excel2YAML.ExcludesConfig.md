@@ -34,7 +34,7 @@ emptyValues: true
 
 #### Defined in
 
-[interfaces/ExcludesConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ExcludesConfig.ts#L13)
+[interfaces/ExcludesConfig.ts:13](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/ExcludesConfig.ts#L13)
 
 ___
 
@@ -52,7 +52,7 @@ excludeColumns: ["ColumnA", "ColumnB"]
 
 #### Defined in
 
-[interfaces/ExcludesConfig.ts:18](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ExcludesConfig.ts#L18)
+[interfaces/ExcludesConfig.ts:18](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/ExcludesConfig.ts#L18)
 
 ___
 
@@ -70,4 +70,4 @@ groupingByValue: { "<ColumnName>": "Value" }
 
 #### Defined in
 
-[interfaces/ExcludesConfig.ts:23](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/ExcludesConfig.ts#L23)
+[interfaces/ExcludesConfig.ts:23](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/ExcludesConfig.ts#L23)

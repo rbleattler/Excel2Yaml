@@ -31,7 +31,7 @@ The property to iterate over
 
 #### Defined in
 
-[interfaces/GroupingNode.ts:26](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/GroupingNode.ts#L26)
+[interfaces/GroupingNode.ts:26](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/GroupingNode.ts#L26)
 
 ___
 
@@ -43,7 +43,7 @@ The source of the data
 
 #### Defined in
 
-[interfaces/GroupingNode.ts:37](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/GroupingNode.ts#L37)
+[interfaces/GroupingNode.ts:37](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/GroupingNode.ts#L37)
 
 ___
 
@@ -55,7 +55,7 @@ The template for each group's output
 
 #### Defined in
 
-[interfaces/GroupingNode.ts:56](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/GroupingNode.ts#L56)
+[interfaces/GroupingNode.ts:56](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/GroupingNode.ts#L56)
 
 ___
 
@@ -67,4 +67,4 @@ Optional filter condition
 
 #### Defined in
 
-[interfaces/GroupingNode.ts:67](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/GroupingNode.ts#L67)
+[interfaces/GroupingNode.ts:67](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/GroupingNode.ts#L67)

@@ -27,7 +27,7 @@ Output format (e.g., "yaml").
 
 #### Defined in
 
-[interfaces/OutputConfig.ts:12](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/OutputConfig.ts#L12)
+[interfaces/OutputConfig.ts:12](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/OutputConfig.ts#L12)
 
 ___
 
@@ -39,4 +39,4 @@ Template structure for output generation.
 
 #### Defined in
 
-[interfaces/OutputConfig.ts:16](https://github.com/rbleattler/Excel2Yaml/blob/a1aba8cdde2a76234aa9d6c5ebacf57ebabc31fe/src/interfaces/OutputConfig.ts#L16)
+[interfaces/OutputConfig.ts:16](https://github.com/rbleattler/Excel2Yaml/blob/0fa89d9b50c0f12b0bb5739c1b46c02b0dc3aa9b/src/interfaces/OutputConfig.ts#L16)
